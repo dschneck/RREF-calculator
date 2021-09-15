@@ -23,9 +23,10 @@ class RREF:
 
 			if (pivot, pivot) != (row, col):
 				print("not in the", pivot, "th position", row, col)
-				for j in range(row+1, A.n-1):
-					if A.matrix[j][col] != 0:
+				for j in range(row+1, A.m):
+					if A.matrix[j][pivot] != 0:
 						A.matrix[j], A.matrix[row] = self.__interchange(A, row, j)
+						print("After the interchange")
 						A.printMatrix()
 						row = j
 						break
@@ -35,17 +36,20 @@ class RREF:
 
 			
 			for j in range(A.n-1):
-				if j != pivot: 
+				if j != pivot and A.matrix[j][pivot] != 0 and A.matrix[row][pivot] != 0: 
 					A.matrix[j] = self.__rowSum(A, j, row, -1*A.matrix[j][pivot]/A.matrix[row][pivot]) 
 			print("After row suming")
 			A.printMatrix()
 			
-			A.matrix[row] = self.__scale(A, pivot, 1/A.matrix[pivot][pivot])
-			print("New matrix after scaling is: ")
-			A.printMatrix()
+			if A.matrix[pivot][pivot] != 0 and A.matrix[pivot][pivot] != 1:
+				A.matrix[row] = self.__scale(A, pivot, 1/A.matrix[pivot][pivot])
+				print("New matrix after scaling is: ")
+				A.printMatrix()
 
 			# get ready for the next pass
 			pivot = pivot + 1
+			if pivot > A.n:
+				break
 			print("pivot ", (pivot,pivot))
 
 		
@@ -102,12 +106,14 @@ class RREF:
 
 if __name__ == "__main__":
 	#print(sys.argv[1])
-	#A = Matrix([[1, 0, 0, 2], [0, 1, 0, 3], [0, 0, 1, 4]], 3, 4)
+	#A = Matrix([[0, 1, 0, 3], [1, 0, 0, 2], [0, 0, 1, 4]], 3, 4)
 	B = Matrix([[2.0, 8.0, 4.0, 2.0], [2.0, 5.0, 1.0, 5.0], [4.0, 10.0, -1.0, 1.0]], 3, 4)
 	#C = Matrix([[1],[9]], 2, 1)
 	#C.printMatrix()
+	#D = Matrix([[0,1], [0,0], [5,9]], 3, 2)
 
 	#x = RREF(A)
 	y  = RREF(B)
 	#z = RREF(C)
+	#r = RREF(D)
 
