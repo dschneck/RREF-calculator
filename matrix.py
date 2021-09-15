@@ -1,21 +1,21 @@
 class Matrix:
-	def  __init__(self, matrix: [[int]], m: int, n: int):
+	def  __init__(self, matrix: [[float]], m: float, n: float):
 		self.matrix = matrix
 		self.m = m
 		self.n = n
 
 	def printMatrix(self):
-		line = "+++"
+		line = "+++++++++"
 
 		for i in range(self.n):
-			line += "++"
+			line += "++++++++"
 
 		print(line)
 
 		for i in range(self.m):
-			print("| ", end="")
+			print("|\t ", end="")
 			for j in range(self.n):
-				print(self.matrix[i][j], end=" ")
+				print(self.matrix[i][j], end="\t")
 			print("|")
 
 		print(line, "\n")
