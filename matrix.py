@@ -17,6 +17,5 @@ class Matrix:
 			for j in range(self.n):
 				print(self.matrix[i][j], end="\t")
 			print("|")
-			#print(id(self.matrix[i]))
 
 		print(line, "\n")
