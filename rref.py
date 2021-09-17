@@ -100,9 +100,14 @@ class RREF:
 
 
 if __name__ == "__main__":
-	x = Input.getInput()
-	y = Matrix(x[0], x[1], x[2])
-	z = RREF(y)
+	if len(sys.argv) == 1:
+		x = Input.getInput()
+		y = Matrix(x[0], x[1], x[2])
+		z = RREF(y)
+	else:
+		x = Input.getInput(sys.argv[1])
+		y = Matrix(x[0], x[1], x[2])
+		z = RREF(y)
 	#A = Matrix([[0, 1, 0, 3], [1, 0, 0, 2], [0, 0, 1, 4]], 3, 4)
 	#B = Matrix([[2.0, 8.0, 4.0, 2.0], [2.0, 5.0, 1.0, 5.0], [4.0, 10.0, -1.0, 1.0]], 3, 4)
 	#C = Matrix([[1],[9]], 2, 1)
