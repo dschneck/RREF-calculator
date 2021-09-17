@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-	I'm using the algorithm from here: 
+	Inspiration for the solution came from the following link:
 	https://www.math.purdue.edu/~shao92/documents/Algorithm%20REF.pdf
 
 '''
@@ -12,6 +12,7 @@ from getInput import Input
 
 class RREF:
 	def __init__(self, A: Matrix):
+		print("Original matrix:")
 		A.printMatrix()
 		pivot = 0
 
@@ -20,7 +21,7 @@ class RREF:
 				break
 
 			row, col = self.__findNonZero(A, pivot)
-			if (row, col) == (-1, -1):
+			if (row, col) == (-1, -1): # case where there are no more nonzero values
 				break
 
 			if (pivot, pivot) != (row, col):
@@ -47,6 +48,7 @@ class RREF:
 
 			pivot = pivot + 1
 
+		print("RREF matrix: ")
 		A.printMatrix()
 		self.__validate(A)
 
@@ -54,10 +56,11 @@ class RREF:
 	def __validate(A: Matrix):
 		flag = 0 # changes if an error is detected
 
-		for i in range(A.m-1):
-			if A.matrix[i][i] != 1:
-				flag = 1
-				break
+		if A.n != 1:
+			for i in range(A.m-1):
+				if A.matrix[i][i] != 1:
+					flag = 1
+					break
 
 		if flag == 0:
 			print("This is a valid RREF")
@@ -73,10 +76,8 @@ class RREF:
 					return i, j
 		return -1, -1
 
-	#----ELEMENTARY ROW OPERATIONS----#
 	@staticmethod
 	def __interchange(A: Matrix, row1: int, row2: int):
-		print(A.matrix[row1], A.matrix[row2], sep="\n")
 		return A.matrix[row1], A.matrix[row2]
 
 	@staticmethod
@@ -97,24 +98,12 @@ class RREF:
 
 		return tempRow
 
-
-
 if __name__ == "__main__":
-	if len(sys.argv) == 1:
+	if len(sys.argv) == 1: 				# input from command line
 		x = Input.getInput()
 		y = Matrix(x[0], x[1], x[2])
 		z = RREF(y)
-	else:
+	else: 								# input from file
 		x = Input.getInput(sys.argv[1])
 		y = Matrix(x[0], x[1], x[2])
 		z = RREF(y)
-	#A = Matrix([[0, 1, 0, 3], [1, 0, 0, 2], [0, 0, 1, 4]], 3, 4)
-	#B = Matrix([[2.0, 8.0, 4.0, 2.0], [2.0, 5.0, 1.0, 5.0], [4.0, 10.0, -1.0, 1.0]], 3, 4)
-	#C = Matrix([[1],[9]], 2, 1)
-	#C.printMatrix()
-	#D = Matrix([[0,1], [0,0], [5,9]], 3, 2)
-
-	#x = RREF(A)
-	#y  = RREF(B)
-	#z = RREF(C)
-	#r = RREF(D)

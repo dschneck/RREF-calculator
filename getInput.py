@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import sys
 
 class Input:
@@ -12,7 +11,7 @@ class Input:
 			print("How many rows?")
 			r = int(input())
 
-			print("How many rows?")
+			print("How many columns?")
 			c = int(input())
 
 			for i in range(r):
@@ -38,4 +37,5 @@ class Input:
 						k += 1
 					if i != r-1:
 						A.append([])
+		print()
 		return (A, r, c)
