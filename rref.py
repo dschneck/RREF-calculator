@@ -25,32 +25,50 @@ class RREF:
 			if (row, col) == (-1, -1):
 				break
 
-			#print("row, col ", (row, col))
+			print("row, col ", (row, col))
 
 			if (pivot, pivot) != (row, col):
-				#print("not in the", pivot, "th position", row, col)
-				for j in range(row+1, A.m):
-					if A.matrix[j][pivot] != 0:
-						A = self.__interchange(A, row, j)
-						#A.matrix[j], A.matrix[row] = self.__interchange(A, row, j)
-						'''
-						temp = A.matrix[j].copy()
-						temp2 = A.matrix[row].copy()
+				print("not in the", pivot, "th position", row, col)
+				if row == A.m-1:
+					print("got here")
+					for j in range(A.m-1, 0, -1):
+						print("j is ", j)
+						if A.matrix[j][pivot] == 0:
+							print(A.matrix[j][pivot])
+							A = self.__interchange(A, row, j)
+							#A.matrix[j], A.matrix[row] = self.__interchange(A, row, j)
+							'''
+							temp = A.matrix[j].copy()
+							temp2 = A.matrix[row].copy()
 
-						for k in range(A.n):
-							A.matrix[j][k] = temp2[k]
-							A.matrix[row][k] = temp[k]
-						'''
-						#print("After the interchange")
-						#A.printMatrix()
-						row = j
-						break
+							for k in range(A.n):
+								A.matrix[j][k] = temp2[k]
+								A.matrix[row][k] = temp[k]
+							'''
+							print("After the interchange")
+							A.printMatrix()
+							row = j
+							break
+				
+				else:
+					for j in range(row+1, A.m):
+						if A.matrix[j][pivot] != 0:
+							A = self.__interchange(A, row, j)
+							#A.matrix[j], A.matrix[row] = self.__interchange(A, row, j)
+							'''
+							temp = A.matrix[j].copy()
+							temp2 = A.matrix[row].copy()
+
+							for k in range(A.n):
+								A.matrix[j][k] = temp2[k]
+								A.matrix[row][k] = temp[k]
+							'''
+							print("After the interchange")
+							A.printMatrix()
+							row = j
+							break
 			#else:
 				#print("it was in the right pivot position")
-
-
-			
-
 
 			for j in range(A.m):
 				#print("j: ", A.matrix[j])
@@ -141,12 +159,12 @@ if __name__ == "__main__":
 	#print(sys.argv[1])
 	#A = Matrix([[0, 1, 0, 3], [1, 0, 0, 2], [0, 0, 1, 4]], 3, 4)
 	#B = Matrix([[2.0, 8.0, 4.0, 2.0], [2.0, 5.0, 1.0, 5.0], [4.0, 10.0, -1.0, 1.0]], 3, 4)
-	#C = Matrix([[1],[9]], 2, 1)
+	C = Matrix([[1],[9]], 2, 1)
 	#C.printMatrix()
-	D = Matrix([[0,1], [0,0], [5,9]], 3, 2)
+	#D = Matrix([[0,1], [0,0], [5,9]], 3, 2)
 
 	#x = RREF(A)
 	#y  = RREF(B)
-	#z = RREF(C)
-	r = RREF(D)
+	z = RREF(C)
+	#r = RREF(D)
 
