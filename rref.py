@@ -24,6 +24,7 @@ class RREF:
 			if (row, col) == (-1, -1): # case where there are no more nonzero values
 				break
 
+			# Interchanging
 			if (pivot, pivot) != (row, col):
 				if row == A.m-1:
 					for j in range(A.m-1, 0, -1):
@@ -39,16 +40,18 @@ class RREF:
 							row = j
 							break
 
+			# Row summing
 			for j in range(A.m):
 				if j != pivot and A.matrix[j][pivot] != 0 and A.matrix[pivot][pivot] != 0: 
-					A.matrix[j] = self.__rowSum(A, j, row, -1*A.matrix[j][pivot]/A.matrix[pivot][pivot]) 
+					A.matrix[j] = self.__rowSum(A, j, pivot, -1*A.matrix[j][pivot]/A.matrix[pivot][pivot]) 
+			# Scaling
 			if A.matrix[pivot][pivot] != 0:
 				val = 1/A.matrix[pivot][pivot]
 				A.matrix[pivot] = self.__scale(A, pivot, val)
 
 			pivot = pivot + 1
 
-		print("RREF matrix: ")
+		print("\nRREF matrix: ")
 		A.printMatrix()
 		self.__validate(A)
 
@@ -78,10 +81,12 @@ class RREF:
 
 	@staticmethod
 	def __interchange(A: Matrix, row1: int, row2: int):
+		print(f"\nInterchanging row {row1} and row {row2}")
 		return A.matrix[row1], A.matrix[row2]
 
 	@staticmethod
 	def __scale(A: Matrix, row: int, scalar: float):
+		print(f"\nScaling row {row} by {scalar}")
 		tempRow = A.matrix[row]
 
 		for i in range(A.n):
@@ -90,6 +95,7 @@ class RREF:
 		
 	@staticmethod
 	def __rowSum(A: Matrix, row1: int, row2: int, scalar: float):
+		print(f"\nSumming up row {row1} by {scalar} times row {row2}")
 		tempRow = A.matrix[row1]
 		tempRow2 = A.matrix[row2]
 

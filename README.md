@@ -9,14 +9,11 @@ the Reduced Row Eschelon Form (RREF) of a m x n matrix.
 
 ### with input from the command line:
 
-`
-./rref
+	./rref
 
-`
 
 ### with input from a file:
 
-`
-./rref <filename>
+	./rref <filename>
 
-`
+
