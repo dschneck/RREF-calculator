@@ -58,6 +58,7 @@ class RREF:
 		A.printMatrix()
 		self.__validate(A)
 		self.matrix = A
+		print(self.flag)
 
 	@staticmethod
 	def __validate(A: Matrix):
