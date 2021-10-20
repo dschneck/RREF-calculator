@@ -5,6 +5,10 @@ class Matrix:
 		self.n = n
 
 	def printMatrix(self):
+		if self.m > 5 or self.n > 6:
+			print("Too big to print")
+			return
+
 		line = "+++++++++"
 
 		for i in range(self.n):
