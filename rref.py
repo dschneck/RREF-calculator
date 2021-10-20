@@ -12,6 +12,7 @@ from getInput import Input
 
 class RREF:
 	def __init__(self, A: Matrix):
+		self.flag = False
 		print("Original matrix:")
 		A.printMatrix()
 		pivot = 0
@@ -29,6 +30,7 @@ class RREF:
 				if row == A.m-1:
 					for j in range(A.m-1, 0, -1):
 						if A.matrix[j][pivot] == 0:
+							self.flag = True
 							A.matrix[j], A.matrix[row] = self.__interchange(A, row, j)
 							row = j
 							break
@@ -36,6 +38,7 @@ class RREF:
 				else:
 					for j in range(row+1, A.m):
 						if A.matrix[j][pivot] != 0:
+							self.flag = True
 							A.matrix[j], A.matrix[row] = self.__interchange(A, row, j)
 							row = j
 							break
@@ -54,6 +57,7 @@ class RREF:
 		print("\nRREF matrix: ")
 		A.printMatrix()
 		self.__validate(A)
+		self.matrix = A
 
 	@staticmethod
 	def __validate(A: Matrix):
